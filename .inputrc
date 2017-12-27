@@ -1,0 +1,3 @@
+# disables beep sound in Windows Ubuntu Bash
+set bell-style visible
+
