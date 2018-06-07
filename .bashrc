@@ -17,9 +17,9 @@ connect() {
 tmx() {
         session=jmik
         tmux new -s $session -d ; tmux rename-window -t $session ..root..;
-        tmux new-window -t $session -n .:MAIN:.
+        tmux new-window -t $session -n ..main..
 
-        tmux select-window -t $session:.:MAIN:.
+        tmux select-window -t $session:..main..
         tmux a -t $session
 }
 
