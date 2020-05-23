@@ -8,3 +8,16 @@
 	rl = reflog --format='%C(auto)%h %<|(20)%gd %C(blue)%cr%C(reset) %gs (%s)'
 	lgs = "!f() { git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | head -40; };f"
 	vlgs = "!f() { git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | head -10; };f"
+	show-r-long = "!f() { git for-each-ref --format=' %(authorname);%(color:yellow)%(refname)%(color:reset);(%(color:green)%(committerdate:relative)%(color:reset));\
+                       %(color:red)%(objectname:short)%(color:reset);%(contents:subject)' --sort=authorname --color=always | column -t -s ';'; };f"
+	show-r = "!f() { git for-each-ref --format=' %(authorname);%(color:yellow)%(refname)%(color:reset);(%(color:green)%(committerdate:relative)%(color:reset))' --sort=authorname --color=always | column -t -s ';'; };f"
+	lem = "checkout -- sim/flex-ui-module/src/main/java/com/trigeo/manager/flex/gsa/FlexGetSetActionRouter.java"
+	show-br = "!f() { git for-each-ref --sort=-committerdate refs/heads/ --format='%(authordate:short) %(color:red)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset)) %(color:bold blue)<%(authorname)>%(color:reset)'; };f"
+	l = vlgs
+	a = add
+	br = branch
+	s = status
+	c = commit
+	ch = checkout
+	ph = push
+	pl = pull
