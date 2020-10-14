@@ -22,6 +22,15 @@ tmx() {
         tmux a -t $session
 }
 
+git_branch() {
+	if ! git rev-parse --git-dir &>/dev/null; then
+		return 0
+	fi
+ 
+	local git_current_branch="$(git branch 2>/dev/null | grep -oP '(?<=^\*\s).*')"
+	echo " (${git_current_branch})"
+}
+
 # fix perl locale issue
 export LANG=en_US.utf8
 export LC_ALL=C
@@ -38,7 +47,7 @@ stty -ixon
 
 
 # user color promtp
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]($?) \u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \n \$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]($?) \u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(git_branch) \n \$ '
 
 # root color prompt
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;36m\]($?) \u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n \$ '
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;36m\]($?) \u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(git_branch) \n \$ '
