@@ -51,3 +51,6 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]($?) \u@\h\[\033[00m\]:\[\
 
 # root color prompt
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;36m\]($?) \u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(git_branch) \n \$ '
+
+# snapshot bash history with each command (`shopt -s histappend` required)
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
