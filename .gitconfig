@@ -1,17 +1,17 @@
 [core]
 	ignorecase = false
 	autocrlf = false
-[pull]
-	rebase = true
+	excludesFile = ~/.gitignore
+	editor = vim
+
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	rl = reflog --format='%C(auto)%h %<|(20)%gd %C(blue)%cr%C(reset) %gs (%s)'
-	lgs = "!f() { git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | head -40; };f"
-	vlgs = "!f() { git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | head -10; };f"
+	lgs = "!f() { git log $1 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | head -40; };f"
+	vlgs = "!f() { git log $1 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit | head -10; };f"
 	show-r-long = "!f() { git for-each-ref --format=' %(authorname);%(color:yellow)%(refname)%(color:reset);(%(color:green)%(committerdate:relative)%(color:reset));\
-                       %(color:red)%(objectname:short)%(color:reset);%(contents:subject)' --sort=authorname --color=always | column -t -s ';'; };f"
+				   %(color:red)%(objectname:short)%(color:reset);%(contents:subject)' --sort=authorname --color=always | column -t -s ';'; };f"
 	show-r = "!f() { git for-each-ref --format=' %(authorname);%(color:yellow)%(refname)%(color:reset);(%(color:green)%(committerdate:relative)%(color:reset))' --sort=authorname --color=always | column -t -s ';'; };f"
-	lem = "checkout -- sim/flex-ui-module/src/main/java/com/trigeo/manager/flex/gsa/FlexGetSetActionRouter.java"
 	show-br = "!f() { git for-each-ref --sort=-committerdate refs/heads/ --format='%(authordate:short) %(color:red)%(objectname:short) %(color:yellow)%(refname:short)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset)) %(color:bold blue)<%(authorname)>%(color:reset)'; };f"
 	l = vlgs
 	a = add
@@ -21,3 +21,20 @@
 	ch = checkout
 	ph = push
 	pl = pull
+	can = commit --amend --no-edit
+	
+[diff]
+	tool = p4merge
+[difftool "p4merge"]
+	#path = C:\\Program Files\\Perforce\\p4merge.exe
+	#path = C:\\Program Files\\Sublime Merge\\smerge.exe
+	cmd = cmd.exe //c "\"c:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2021.2/bin/idea64.exe\" diff \"$LOCAL\" \"$REMOTE\""
+[merge]
+	tool = p4merge
+[mergetool "p4merge"]
+	#path = C:\\Program Files\\Perforce\\p4merge.exe
+	#path = C:\\Program Files\\Sublime Merge\\smerge.exe
+	cmd = cmd.exe //c "\"c:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2021.2/bin/idea64.exe\" merge \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\""
+	trustExitCode = true
+[difftool]
+	prompt = false
