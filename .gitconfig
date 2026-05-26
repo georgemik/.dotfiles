@@ -22,19 +22,21 @@
 	ph = push
 	pl = pull
 	can = commit --amend --no-edit
+	list-br="!git branch --sort=committerdate | xargs echo"
+    rbi = !git -c rebase.autoStash=false rebase -i
+	phs = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
+	wdiff = diff --word-diff-regex=.
 	
 [diff]
-	tool = p4merge
-[difftool "p4merge"]
-	#path = C:\\Program Files\\Perforce\\p4merge.exe
-	#path = C:\\Program Files\\Sublime Merge\\smerge.exe
-	cmd = cmd.exe //c "\"c:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2021.2/bin/idea64.exe\" diff \"$LOCAL\" \"$REMOTE\""
-[merge]
-	tool = p4merge
-[mergetool "p4merge"]
-	#path = C:\\Program Files\\Perforce\\p4merge.exe
-	#path = C:\\Program Files\\Sublime Merge\\smerge.exe
-	cmd = cmd.exe //c "\"c:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2021.2/bin/idea64.exe\" merge \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\""
-	trustExitCode = true
-[difftool]
-	prompt = false
+        algorithm = histogram
+        colorMoved = plain
+        mnemonicPrefix = true
+        renames = true
+[tag]
+        sort = version:refname
+[help]
+        autocorrect = prompt
+[rebase]
+        autoStash = true
+[rerere]
+        enabled = true
